@@ -1,0 +1,13 @@
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\TestBank.exe.config
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\phantomjs.exe
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\phantomjs-license.txt
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\TestBank.exe
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\TestBank.pdb
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\WebDriver.dll
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\WebDriver.xml
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\obj\Debug\TestBank.csprojResolveAssemblyReference.cache
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\obj\Debug\TestBank.Form1.resources
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\obj\Debug\TestBank.Properties.Resources.resources
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\obj\Debug\TestBank.csproj.GenerateResource.Cache
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\obj\Debug\TestBank.exe
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\obj\Debug\TestBank.pdb
