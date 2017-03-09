@@ -13,7 +13,7 @@ namespace TestBank
 {
     public class AccountDetail
     {
-        PhantomJSDriver driver = null;
+        private PhantomJSDriver driver = null;
 
         public AccountDetail(string AccountValue, PhantomJSDriver argdriver)
         {

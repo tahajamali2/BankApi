@@ -27,20 +27,8 @@ namespace TestBank
         {
             try
             {
-                //var driver = new PhantomJSDriver();
-                //driver.Navigate().GoToUrl("https://hblibank.com.pk/");
-                //driver.FindElementById("btnProceed").Click();
-                //driver.FindElementByName("fldLoginUserId").SendKeys("tahajamali");
-                //driver.FindElementByName("fldPassword").SendKeys("taha071999");
-                //driver.FindElementById("foo").Click();
-
-                //ReadOnlyCollection<String> handles = driver.WindowHandles;
-                //driver.SwitchTo().Window(handles[0]);
-                //driver.SwitchTo().Frame("frame_menu");
-                //driver.FindElementById("RRAAClink").Click();
-                //driver.GetScreenshot().SaveAsFile("tt1.png", ScreenshotImageFormat.Png);
-
-                HblBank ab = new HblBank("tahajamali", "taha071999");
+                HblBank ab = new HblBank("", "");
+                var cd = ab.Accounts[0].GetAccountDetails();
             }
             catch
             {
