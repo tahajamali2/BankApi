@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System.Drawing.Imaging;
 using System.Collections.ObjectModel;
+using Supremes.Nodes;
 
 namespace TestBank
 {
@@ -31,8 +32,22 @@ namespace TestBank
             driver.SwitchTo().Frame("frame_menu");
             driver.FindElementById("RRAAClink").Click();
 
+            driver.SwitchTo().Window(driver.CurrentWindowHandle);
             driver.SwitchTo().Frame("frame_txn");
             string abc = driver.FindElementByName("fldacctno").GetAttribute("innerHTML");
+
+            Document body = Supremes.Dcsoup.Parse(abc);
+            Elements options = body.Select("option");
+
+            Accounts = new List<Account>();
+
+            foreach (Element el in options)
+            {
+                if(!el.Val.Equals("")) 
+                {
+                    Accounts.Add(new Account(driver) { Name = el.OwnText, Value = el.Val });
+                }
+            }
         }
 
         
