@@ -27,3 +27,9 @@ C:\Users\Taha Jamali\Documents\Visual Studio 2013\Projects\BankApi\TestBank\obj\
 C:\Users\Taha Jamali\Documents\Visual Studio 2013\Projects\BankApi\TestBank\bin\Debug\Supremes.dll
 C:\Users\Taha Jamali\Documents\Visual Studio 2013\Projects\BankApi\TestBank\bin\Debug\WebDriver.Support.dll
 C:\Users\Taha Jamali\Documents\Visual Studio 2013\Projects\BankApi\TestBank\bin\Debug\WebDriver.Support.xml
+<<<<<<< HEAD
+=======
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\Supremes.dll
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\WebDriver.Support.dll
+C:\Users\taha.jamali\Desktop\TestBank\TestBank\bin\Debug\WebDriver.Support.xml
+>>>>>>> 31a6a4162112f3a37766238c02d0a33d413c17b5

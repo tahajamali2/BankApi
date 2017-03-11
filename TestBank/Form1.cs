@@ -27,8 +27,11 @@ namespace TestBank
         {
             try
             {
+
                 HblBank ab = new HblBank("", "");
                 var cd = ab.Accounts[0].GetAccountDetails();
+                var cb = cd.GetAccountStatement(DateTime.Now.AddMonths(-1), DateTime.Now).Activities;
+                var cd2 = cd.GetAccountStatement(DateTime.Now.AddMonths(-6), DateTime.Now).Activities;
             }
             catch
             {

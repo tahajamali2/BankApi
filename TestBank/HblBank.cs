@@ -21,36 +21,70 @@ namespace TestBank
 
         public HblBank(string Username, string Password)
         {
-            driver.Navigate().GoToUrl("https://hblibank.com.pk/");
-            driver.FindElementById("btnProceed").Click();
-            driver.FindElementByName("fldLoginUserId").SendKeys(Username);
-            driver.FindElementByName("fldPassword").SendKeys(Password);
-            driver.FindElementById("foo").Click();
-
-            ReadOnlyCollection<String> handles = driver.WindowHandles;
-            driver.SwitchTo().Window(handles[0]);
-            driver.SwitchTo().Frame("frame_menu");
-            driver.FindElementById("RRAAClink").Click();
-
-            driver.SwitchTo().Window(driver.CurrentWindowHandle);
-            driver.SwitchTo().Frame("frame_txn");
-            string abc = driver.FindElementByName("fldacctno").GetAttribute("innerHTML");
-
-            Document body = Supremes.Dcsoup.Parse(abc);
-            Elements options = body.Select("option");
-
-            Accounts = new List<Account>();
-
-            foreach (Element el in options)
+            try
             {
-                if(!el.Val.Equals("")) 
+                driver.Navigate().GoToUrl("https://hblibank.com.pk/");
+            }
+            catch
+            {
+                throw new Exception("(ErrorCode:1) Bank Service Unavailable Or Network Not Available");
+            }
+
+            try
+            {
+                
+                driver.FindElementById("btnProceed").Click();
+                driver.FindElementByName("fldLoginUserId").SendKeys(Username);
+                driver.FindElementByName("fldPassword").SendKeys(Password);
+                driver.FindElementById("foo").Click();
+
+                
+                ReadOnlyCollection<String> handles = driver.WindowHandles;
+                driver.SwitchTo().Window(handles[0]);
+                
+            }
+            catch
+            {
+                throw new Exception("(ErrorCode:2) Service Response Delay");
+            }
+            try
+            {
+                driver.SwitchTo().Frame("frame_menu");
+                driver.FindElementById("RRAAClink").Click();
+            }
+            catch
+            {
+                throw new Exception("(ErrorCode:3) Credentials are not Valid Or Network Not Available");
+            }
+
+
+            try
+            {
+                driver.SwitchTo().Window(driver.CurrentWindowHandle);
+                driver.SwitchTo().Frame("frame_txn");
+                string abc = driver.FindElementByName("fldacctno").GetAttribute("innerHTML");
+
+                Document body = Supremes.Dcsoup.Parse(abc);
+                Elements options = body.Select("option");
+
+                Accounts = new List<Account>();
+
+                foreach (Element el in options)
                 {
-                    Accounts.Add(new Account(driver) { Name = el.OwnText, Value = el.Val });
+                    if (!el.Val.Equals(""))
+                    {
+                        Accounts.Add(new Account(driver) { Name = el.OwnText, Value = el.Val });
+                    }
                 }
             }
+            catch
+            {
+                throw new Exception("(ErrorCode:4) Network Or Service not Available");
+            }
+
+
         }
 
-        
 
     }
 }

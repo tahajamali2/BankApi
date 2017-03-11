@@ -16,6 +16,7 @@ namespace TestBank
     public class Account
     {
         private PhantomJSDriver driver = null;
+
         public Account()
         {
 
@@ -31,39 +32,56 @@ namespace TestBank
 
         public AccountDetail GetAccountDetails()
         {
-            driver.SwitchTo().Window(driver.CurrentWindowHandle);
-            driver.SwitchTo().Frame("frame_menu");
-            driver.FindElementById("RRADTlink").Click();
+            if (driver != null)
+            {
+               
+                string abc = string.Empty;
+                Document body = null;
+                ReadOnlyCollection<IWebElement> alltables;
+                try
+                {
+                    driver.SwitchTo().Window(driver.CurrentWindowHandle);
+                    driver.SwitchTo().Frame("frame_menu");
+                    driver.FindElementById("RRADTlink").Click();
 
-            driver.SwitchTo().Window(driver.CurrentWindowHandle);
-            driver.SwitchTo().Frame("frame_txn");
+                    driver.SwitchTo().Window(driver.CurrentWindowHandle);
+                    driver.SwitchTo().Frame("frame_txn");
 
-            SelectElement elem = new SelectElement(driver.FindElementById("fldacctnodesc"));
-            elem.SelectByValue(this.Value);
+                    SelectElement elem = new SelectElement(driver.FindElementById("fldacctnodesc"));
+                    elem.SelectByValue(this.Value);
 
-            driver.FindElementByName("fldsubmit").Click();
+                    driver.FindElementByName("fldsubmit").Click();
 
-            var alltables = driver.FindElementsByClassName("infotable");
-            string abc = alltables[0].GetAttribute("innerHTML");
-            Document body = Supremes.Dcsoup.Parse(abc);
+                    alltables = driver.FindElementsByClassName("infotable");
+                    abc = alltables[0].GetAttribute("innerHTML");
+                    body = Supremes.Dcsoup.Parse(abc);
+                }
+                catch
+                {
+                    throw new Exception("(ErrorCode:6) Service Or Network not Available Or Might be Some Rendering Problem Try again.");
+                }
 
-            AccountDetail detail = new AccountDetail(this.Value,driver);
-            detail.AccountTitle = body.Body.TextNodes[1].Text;
-            detail.AccountNumber = body.Body.TextNodes[4].Text;
+                AccountDetail detail = new AccountDetail(this.Value, driver);
+                detail.AccountTitle = body.Body.TextNodes[1].Text;
+                detail.AccountNumber = body.Body.TextNodes[4].Text;
 
-            abc = alltables[2].GetAttribute("innerHTML");
-            body = Supremes.Dcsoup.Parse(abc);
+                abc = alltables[2].GetAttribute("innerHTML");
+                body = Supremes.Dcsoup.Parse(abc);
 
-            detail.CurrentBalance = Convert.ToDouble(body.Body.TextNodes[2].Text.Replace(",", ""));
-            detail.AmountOnHold = Convert.ToDouble(body.Body.TextNodes[4].Text.Replace(",", ""));
-            detail.UnClearedFunds = Convert.ToDouble(body.Body.TextNodes[6].Text.Replace(",", ""));
-            detail.OverDraftLimit = Convert.ToDouble(body.Body.TextNodes[8].Text.Replace(",", ""));
-            detail.AvailableBalance = Convert.ToDouble(body.Body.TextNodes[10].Text.Replace(",", ""));
-            detail.NetAvailableBalanceForWithDrawls = Convert.ToDouble(body.Body.TextNodes[12].Text.Replace(",", ""));
+                detail.CurrentBalance = Convert.ToDouble(body.Body.TextNodes[2].Text.Replace(",", ""));
+                detail.AmountOnHold = Convert.ToDouble(body.Body.TextNodes[4].Text.Replace(",", ""));
+                detail.UnClearedFunds = Convert.ToDouble(body.Body.TextNodes[6].Text.Replace(",", ""));
+                detail.OverDraftLimit = Convert.ToDouble(body.Body.TextNodes[8].Text.Replace(",", ""));
+                detail.AvailableBalance = Convert.ToDouble(body.Body.TextNodes[10].Text.Replace(",", ""));
+                detail.NetAvailableBalanceForWithDrawls = Convert.ToDouble(body.Body.TextNodes[12].Text.Replace(",", ""));
 
-            return detail;
+                return detail;
+            }
+            else
+            {
+                throw new Exception("(ErrorCode:5) Account object not initialized");
+            }
+
         }
-
-
     }
 }
